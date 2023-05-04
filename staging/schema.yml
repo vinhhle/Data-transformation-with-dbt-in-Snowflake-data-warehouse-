@@ -1,0 +1,47 @@
+
+version: 2
+
+models:
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_state
+        tests:
+          - accepted_values:
+              values: ['AC', 'AL', 'AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RN','RS','RJ','RO','RR','SC','SP','SE','TO']
+
+  - name: stg_products
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ['delivered', 'invoiced', 'shipped', 'processing', 'unavailable','canceled','created', 'approved']
+
+  - name: stg_order_items
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+              
+
+
+
+
